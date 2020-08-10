@@ -1429,12 +1429,15 @@ function display_subtitles()
     lang["mess_no_res"])
 end
 
-function get_first_sel(list)
+  function get_all_sel(list)
   local selection = list:get_selection()
+    local indexes = {}
+    local i = 1 -- key counter
   for index, name in pairs(selection) do
-    return index
+      indexes[i] = index
+      i = i + 1
   end
-  return 0
+    return indexes
 end
 
 function find_subtitle_in_archive(archivePath, subfileExt)
@@ -1453,18 +1456,18 @@ function find_subtitle_in_archive(archivePath, subfileExt)
 end
 
 function download_subtitles()
-  local index = get_first_sel(input_table["mainlist"])
-
-  if index == 0 then
+    local indexes = get_all_sel(input_table["mainlist"])
+    if #indexes == 0 then -- if no subtitles selected
     setMessage(lang["mess_no_selection"])
     return false
   end
-
   openSub.actionLabel = lang["mess_downloading"]
 
   display_subtitles() -- reset selection
 
-  local item = openSub.itemStore[index]
+  -- for each subtitle index
+  for _, index in pairs(indexes) do
+    item = openSub.itemStore[index]
 
   if openSub.option.downloadBehaviour == 'manual'
   or not openSub.file.hasInput then
@@ -1580,6 +1583,7 @@ function download_subtitles()
   end
 
   setMessage(message)
+end
 end
 
 function dump_zip(url, dir, subfileName)
