@@ -333,7 +333,7 @@ function descriptor()
     version = "0.11.1",
     author = "exebetche",
     url = 'http://www.opensubtitles.org/',
-    shortdesc = "VLsub";
+    shortdesc = "VLsub (multi)";
     description = options.translation.int_descr,
     capabilities = {"menu", "input-listener" }
   }
