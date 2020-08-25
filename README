@@ -1,3 +1,29 @@
+About this fork:
+===============
+Adds the VLSub extension a new feature: downloading multiple subtitles with one click.
+
+Installation:
+1) Copy extension <This repository>/share/lua/extensions/VLSub.lua
+2) into your extension folder, which depends on the following:
+    For All Users
+
+    In Windows: Program Files\VideoLAN\VLC\lua\extensions\
+    In Mac OS X: /Applications/VLC.app/Contents/MacOS/share/lua/extensions/
+    In Linux: /usr/lib/vlc/lua/playlist/ or /usr/share/vlc/lua/extensions/
+
+    For Current User
+
+    In Windows: %APPDATA%\vlc\lua\extensions\
+    In Mac OS X: /Users/%your_name%/Library/Application Support/org.videolan.vlc/lua/extensions/
+    In Linux: ~/.local/share/vlc/lua/extensions/
+
+Instructions:
+Open the extension in VLC by clicking on 'View'->'VLsub (multi)' select multiple subtitles with shift-click, and click 'Download selection'.
+
+Miscellaneous changes:
+- Bugfix: '401 Unauthorized' error fixed
+- Bugfix: VLSub extension not opening fixed
+
 README for the VLC media player
 ===============================
 
