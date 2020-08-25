@@ -118,12 +118,16 @@ libqt_plugin_la_SOURCES = \
 	gui/qt/maininterface/compositor.cpp \
 	gui/qt/maininterface/compositor_dummy.hpp \
 	gui/qt/maininterface/compositor_dummy.cpp \
+	gui/qt/maininterface/interface_window_handler.cpp \
+	gui/qt/maininterface/interface_window_handler.hpp \
 	gui/qt/maininterface/main_interface.cpp \
 	gui/qt/maininterface/main_interface.hpp \
 	gui/qt/maininterface/mainui.cpp \
 	gui/qt/maininterface/mainui.hpp \
 	gui/qt/maininterface/videosurface.cpp \
 	gui/qt/maininterface/videosurface.hpp \
+	gui/qt/maininterface/video_window_handler.cpp \
+	gui/qt/maininterface/video_window_handler.hpp \
 	gui/qt/medialibrary/medialib.cpp \
 	gui/qt/medialibrary/medialib.hpp \
 	gui/qt/medialibrary/mlalbum.cpp \
@@ -220,7 +224,9 @@ libqt_plugin_la_SOURCES = \
 if HAVE_WIN32
 libqt_plugin_la_SOURCES += \
 	gui/qt/maininterface/main_interface_win32.cpp \
-	gui/qt/maininterface/main_interface_win32.hpp
+	gui/qt/maininterface/main_interface_win32.hpp \
+	gui/qt/maininterface/compositor_win7.cpp \
+	gui/qt/maininterface/compositor_win7.hpp
 
 if HAVE_DCOMP
 libqt_plugin_la_SOURCES += \
@@ -286,9 +292,11 @@ nodist_libqt_plugin_la_SOURCES = \
 	gui/qt/dialogs/sout/sout_widgets.moc.cpp \
 	gui/qt/dialogs/toolbar/toolbareditor.moc.cpp \
 	gui/qt/maininterface/compositor_dummy.moc.cpp \
+	gui/qt/maininterface/interface_window_handler.moc.cpp \
 	gui/qt/maininterface/main_interface.moc.cpp \
 	gui/qt/maininterface/mainui.moc.cpp \
 	gui/qt/maininterface/videosurface.moc.cpp \
+	gui/qt/maininterface/video_window_handler.moc.cpp \
 	gui/qt/medialibrary/medialib.moc.cpp \
 	gui/qt/medialibrary/mlalbum.moc.cpp \
 	gui/qt/medialibrary/mlalbummodel.moc.cpp \
@@ -337,7 +345,8 @@ nodist_libqt_plugin_la_SOURCES = \
 	gui/qt/widgets/native/searchlineedit.moc.cpp
 
 if HAVE_WIN32
-nodist_libqt_plugin_la_SOURCES += gui/qt/maininterface/main_interface_win32.moc.cpp
+nodist_libqt_plugin_la_SOURCES += gui/qt/maininterface/main_interface_win32.moc.cpp \
+	gui/qt/maininterface/compositor_win7.moc.cpp
 
 if HAVE_DCOMP
 nodist_libqt_plugin_la_SOURCES += \
@@ -575,6 +584,7 @@ libqt_plugin_la_RES = \
 	gui/qt/pixmaps/topbar/list.svg \
 	gui/qt/pixmaps/cone.svg \
 	gui/qt/pixmaps/album_cover.svg \
+	gui/qt/pixmaps/back.svg \
 	gui/qt/pixmaps/time.svg
 
 #QML and JS resources
@@ -738,7 +748,7 @@ gui/qt/resources.cpp: gui/qt/vlc.qrc $(libqt_plugin_la_RES) $(libqt_plugin_la_QM
 endif
 
 vlc_qt_check_SOURCES = gui/qt/vlc-qt-check.cpp
-vlc_qt_check_CXXFLAGS = $(AM_CXXFLAGS) $(QT_CFLAGS) -fPIC
+vlc_qt_check_CXXFLAGS = $(AM_CXXFLAGS) $(QT_CFLAGS) -fPIC $(CXXFLAGS_qt)
 vlc_qt_check_LDADD = $(QT_LIBS)
 
 if ENABLE_QT
