@@ -1,5 +1,6 @@
 About this fork:
 ===============
+Some of this fork's commits were merged into the original repository, checkout: https://github.com/videolan/vlc/commits?author=AlonSirota
 Adds the VLSub extension a new feature: downloading multiple subtitles with one click.
 
 Installation:
